@@ -49,7 +49,7 @@ public abstract class AbstractCompassMojo extends AbstractMojo {
 	protected void versionCommandExec(String commandName, List<String> script) throws IOException,
 			InterruptedException, MojoExecutionException {
 
-		ProcessExecutor pe = new ProcessExecutor(script);
+		ProcessExecutor pe = new ProcessExecutor(script, null);
 		int ret = pe.execute();
 
 		if (!pe.getResultString().isEmpty()) {
