@@ -66,6 +66,13 @@ public class CompassCompileMojo extends AbstractCompassMojo {
 	private File fontsDir;
 
 	/**
+	 * The directory that the compass command should be run from.
+	 *
+	 * @parameter
+	 */
+	private File baseDir;
+
+	/**
 	 * Use sensible defaults for your current environment.<br>
 	 * One of: development (default), production
 	 *
@@ -109,7 +116,7 @@ public class CompassCompileMojo extends AbstractCompassMojo {
 		List<String> compassScript = buildCompassScript();
 		getLog().info("[Execute] " + scriptToString(compassScript));
 
-		ProcessExecutor pe = new ProcessExecutor(compassScript);
+		ProcessExecutor pe = new ProcessExecutor(compassScript, baseDir);
 		int ret = pe.execute();
 
 		for (String s : pe.getResultString()) {
